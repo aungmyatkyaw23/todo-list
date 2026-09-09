@@ -425,14 +425,12 @@ textarea:focus {
 
 .field-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
-.field-row-filters {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+.field-row label {
+  width: 100%;
 }
 
 /* Button Classes */
@@ -689,7 +687,7 @@ main:focus,
   display: flex;
   width: 100%;
   min-height: 64px;
-  background-color: var(--bg);
+  background-color: var(--mint);
   border-bottom: var(--border-thin);
 }
 
@@ -697,7 +695,6 @@ main:focus,
   display: flex;
   align-items: center;
   padding: 16px 30px;
-  background-color: var(--bg);
 }
 
 .header-section:not(:last-child) {
@@ -741,7 +738,7 @@ main:focus,
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--accent-dark);
+  color: var(--bg);
 }
 
 .auth-section {
@@ -970,6 +967,29 @@ main:focus,
     justify-content: space-between;
   }
 
+  .sidebar .eyebrow,
+  .sidebar h1,
+  .sidebar-copy,
+  .focus-panel {
+    display: none;
+  }
+
+  .sidebar {
+    padding: 16px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .composer,
+  .filters {
+    padding: 16px;
+  }
+
+  .section-heading h3 {
+    font-size: 1.5rem;
+  }
+
   .header-section {
     padding: 10px 15px;
   }
@@ -1035,10 +1055,28 @@ main:focus,
     font-weight: 500;
   }
 
+  /* Optimize Mobile Dashboard */
+  .account-panel,
+  .weather-panel,
+  .focus-panel {
+    display: none;
+  }
+
+  #filterContent {
+    display: none;
+  }
+
+  .filters label:first-of-type {
+    display: none;
+  }
+
+  .filters input[type="search"] {
+    margin-bottom: 12px;
+  }
+
   .site-footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    padding: 16px 0;
+    margin-top: 16px;
   }
 }
 
@@ -1083,5 +1121,55 @@ main:focus,
     grid-template-columns: 1fr;
     display: grid;
     gap: 12px;
+  }
+
+  .field-row-filters {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .field-row-filters label {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+  }
+}
+/* Mobile-only responsive overrides */
+@media (max-width: 768px) {
+  /* Compact form layout for small screens */
+  .composer .field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  /* Create a custom row structure for Due Date + Save Button */
+  .composer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .composer form-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: flex-end;
+  }
+
+  /* Highlight selected navigation item on mobile */
+  .nav-links.active a.active {
+    background-color: var(--mint);
+    color: var(--text);
+  }
+}
+
+
+/* Filter layout control */
+.filter-grid {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 }

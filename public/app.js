@@ -393,6 +393,13 @@ function bindDashboard(content) {
   });
 
   elements.cancelEdit.addEventListener("click", () => resetTodoForm(elements));
+
+  // Toggle filter section on mobile
+  content.querySelector("#toggleFiltersBtn").addEventListener("click", () => {
+    const filterContent = content.querySelector("#filterContent");
+    filterContent.style.display = filterContent.style.display === "none" ? "block" : "none";
+  });
+
   elements.search.addEventListener("input", () => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
