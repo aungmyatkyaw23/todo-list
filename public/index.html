@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocusFlow Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="/" data-route>FocusFlow</a>
+        <div style="flex-grow: 1;"></div>
+        <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/" data-route>Home</a></li>
+          <li><a href="/dashboard" data-route>Dashboard</a></li>
+          <!-- <li><a href="/game" data-route>Game</a></li> -->
+          <li><a href="/about" data-route>About</a></li>
+          <li><a href="/auth" id="logoutNav" class="authStatus" data-route>Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="content" tabindex="-1"></main>
+    <footer class="site-footer">
+      <p>© <span id="currentYear"></span> FocusFlow.</p>
+    </footer>
+
+    <dialog id="confirmDialog">
+      <div class="dialog-content">
+        <h3 id="confirmTitle">Confirm</h3>
+        <p id="confirmMessage"></p>
+        <div class="dialog-actions">
+          <button id="cancelBtn" class="ghost-button">Cancel</button>
+          <button id="confirmBtn" class="primary-button">Confirm</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

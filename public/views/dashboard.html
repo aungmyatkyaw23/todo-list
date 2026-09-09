@@ -1,0 +1,65 @@
+<div id="dashboardShell" class="page-shell">
+  <aside class="sidebar card">
+    <p class="eyebrow">Daily system</p>
+    <h1>FocusFlow</h1>
+    <p class="sidebar-copy">A calm command center for the tasks that need your attention today.</p>
+    <div style="display: none" class="account-panel">
+      <p class="focus-label">Signed in as</p>
+      <p id="currentUserName" class="account-name"></p>
+      <p id="currentUserEmail" class="account-email"></p>
+      <button id="logoutBtn" class="ghost-button logout-button" type="button">Log out</button>
+    </div>
+    <div class="account-panel weather-panel">
+      <div class="weather-heading">
+        <p class="focus-label">Local weather</p>
+        <button id="refreshWeatherBtn" class="icon-button" type="button" aria-label="Refresh weather">↻</button>
+      </div>
+      <p id="weatherInfo" class="weather-info" aria-live="polite">Loading local weather…</p>
+      <p id="weatherDescription" class="weather-description"></p>
+    </div>
+    <div class="stats-grid">
+      <article><span id="totalCount">0</span><p>Total tasks</p></article>
+      <article><span id="pendingCount">0</span><p>In progress</p></article>
+      <article><span id="doneCount">0</span><p>Completed</p></article>
+    </div>
+    <div class="focus-panel"><p class="focus-label">Focus note</p><p>Use priority and due dates to keep today realistic and visible.</p></div>
+  </aside>
+
+  <main class="main-panel">
+    <section class="hero card">
+      <div>
+        <p class="eyebrow">Your task board</p>
+        <h2>Plan, sort, and finish without losing the thread.</h2>
+      </div>
+        <p id="statusMessage" class="status-message" aria-live="polite">Loading tasks…</p>
+    </section>
+    <section class="composer-and-filters">
+      <form id="todoForm" class="card composer">
+        <div class="section-heading"><h3 id="formTitle">Add a new task</h3><button id="cancelEditBtn" class="ghost-button hidden" type="button">Cancel edit</button></div>
+        <label>Title <input name="title" type="text" maxlength="120" required /></label>
+        <label>Description <textarea name="description" rows="4" maxlength="500"></textarea></label>
+        <div class="field-row">
+          <label>Priority <select name="priority"><option value="LOW">Low</option><option value="MEDIUM" selected>Medium</option><option value="HIGH">High</option></select></label>
+          <label>Category <select name="category"><option value="WORK">Work</option><option value="PERSONAL" selected>Personal</option><option value="LEARNING">Learning</option><option value="RELATIONSHIPS">Relationships</option></select></label>
+          <label>Due date <input name="dueDate" type="date" /></label>
+        </div>
+        <button id="submitBtn" class="primary-button" type="submit">Save task</button>
+      </form>
+      <section class="card filters">
+        <div class="section-heading"><h3>Filter your board</h3></div>
+        <label>Search <input id="searchInput" type="search" placeholder="Search title or description" /></label>
+        <div class="field-row-filters">
+          <label>Status <select id="statusFilter"><option value="ALL">All</option><option value="PENDING">Pending</option><option value="DONE">Done</option></select></label>
+          <label>Priority <select id="priorityFilter"><option value="ALL">All</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option></select></label>
+          <label>Category <select id="categoryFilter"><option value="ALL">All</option><option value="WORK">Work</option><option value="PERSONAL">Personal</option><option value="LEARNING">Learning</option><option value="RELATIONSHIPS">Relationships</option></select></label>
+        </div>
+        <button id="cancelFilterBtn" class="primary-button" type="button">Clear filters</button>
+      </section>
+    </section>
+    <section class="card tasks-section"><div class="section-heading"><h3>Task board</h3></div><div id="todoList" class="todo-list"></div></section>
+  </main>
+</div>
+
+<template id="todoCardTemplate">
+  <article class="todo-card"><div class="todo-card-top"><div><p class="todo-priority"></p><h4 class="todo-title"></h4></div><label class="toggle"><input class="todo-toggle" type="checkbox" /><span>Done</span></label></div><p class="todo-description"></p><div class="todo-meta"><span class="todo-status"></span><span class="todo-date"></span></div><div class="todo-actions"><button class="ghost-button edit-btn" type="button">Edit</button><button class="danger-button delete-btn" type="button">Delete</button></div></article>
+</template>
