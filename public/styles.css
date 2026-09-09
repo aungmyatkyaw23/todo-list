@@ -36,6 +36,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 80px;
+}
+
 body {
   margin: 0;
   font-family: "Space Grotesk", sans-serif;
@@ -61,7 +65,7 @@ textarea {
 /* Page Shell and Structure */
 .page-shell {
   width: min(1200px, calc(100% - 32px));
-  margin: 32px auto;
+  margin: 48px auto;
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 32px;
@@ -672,65 +676,97 @@ dialog::backdrop {
   font-weight: 500;
 }
 
-/* Header and Navigation */
-header {
+main:focus,
+#content:focus {
+  outline: none;
+}
+
+/* Brutalist Header and Navigation */
+.brutalist-header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  background-color: var(--bg);
+  border-bottom: var(--border-thin);
 }
 
-.navbar {
-  background: var(--text);
-  color: white;
-  padding: 16px 30px;
+.header-section {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: var(--border-thick);
+  padding: 16px 30px;
+  background-color: var(--bg);
+}
+
+.header-section:not(:last-child) {
+  border-right: var(--border-thin);
+}
+
+.logo-section {
+  flex: 0 0 auto;
 }
 
 .brand {
-  color: white;
-  font-family: "Instrument Serif", serif;
-  font-size: 1.8rem;
-  line-height: 1;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.6rem;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.nav-section {
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 16px;
+  gap: 40px;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
-  display: inline;
-}
-
 .nav-links a {
   text-decoration: none;
-  color: white;
+  color: var(--text);
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 8px 16px;
-  border-radius: var(--br);
-  border: 2px solid transparent;
-  transition: all 0.15s ease;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  transition: color 0.15s ease;
 }
 
-.nav-links a:hover {
-  background-color: var(--peach);
-  color: var(--text);
-  border: var(--border-thin);
-}
-
+.nav-links a:hover,
 .nav-links a.active {
-  background-color: var(--peach);
+  color: var(--accent-dark);
+}
+
+.auth-section {
+  flex: 0 0 auto;
+}
+
+.auth-btn {
+  display: inline-block;
+  text-decoration: none;
   color: var(--text);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 8px 24px;
   border: var(--border-thin);
+  border-radius: 50px;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+
+.auth-btn:hover {
+  background-color: var(--text);
+  color: white;
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px 0px var(--text);
 }
 
 /* Hamburger menu styling */
@@ -749,7 +785,7 @@ header {
 .hamburger span {
   width: 25px;
   height: 3px;
-  background-color: white;
+  background-color: var(--text);
   border-radius: 0px;
   transition: all 0.3s ease-in-out;
 }
@@ -929,12 +965,30 @@ header {
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    min-height: 64px;
-    padding: 10px 20px;
+  .brutalist-header {
+    height: 64px;
+    justify-content: space-between;
   }
 
-  .nav-links li {
+  .header-section {
+    padding: 10px 15px;
+  }
+
+  .nav-section {
+    flex: 1;
+    justify-content: flex-end;
+    border-right: none !important;
+  }
+
+  .logo-section {
+    border-right: var(--border-thin) !important;
+  }
+
+  .auth-section {
+    display: none;
+  }
+
+  .nav-links {
     display: none;
   }
 
@@ -946,12 +1000,12 @@ header {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 61px;
-    right: 0;
+    top: 64px;
+    left: 0;
     width: 100%;
-    background: var(--text);
+    background: var(--bg);
     padding: 16px 0;
-    border-bottom: var(--border-thick);
+    border-bottom: var(--border-thin);
     align-items: center;
     gap: 12px;
     z-index: 1000;
@@ -965,10 +1019,10 @@ header {
 
   .nav-links.active a {
     display: inline-block;
-    padding: 8px 24px;
-    font-size: 0.95rem;
-    border-radius: var(--br);
-    width: 80%;
+    padding: 12px 24px;
+    font-size: 1rem;
+    width: 100%;
+    color: var(--text);
   }
 
   .hamburger {
@@ -977,7 +1031,7 @@ header {
 
   .mobile-only {
     display: block;
-    color: white;
+    color: var(--text);
     font-weight: 500;
   }
 

@@ -10,21 +10,23 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar" aria-label="Main navigation">
-        <a class="brand" href="/" data-route>FocusFlow</a>
-        <div style="flex-grow: 1;"></div>
+    <header class="brutalist-header">
+      <div class="header-section logo-section">
+        <a class="brand" href="/" data-route>FOCUSFLOW</a>
+      </div>
+      <nav class="header-section nav-section" aria-label="Main navigation">
         <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-links">
-          <li><a href="/" data-route>Home</a></li>
-          <li><a href="/dashboard" data-route>Dashboard</a></li>
-          <!-- <li><a href="/game" data-route>Game</a></li> -->
-          <li><a href="/about" data-route>About</a></li>
-          <li><a href="/auth" id="logoutNav" class="authStatus" data-route>Login</a></li>
+          <li><a href="/" data-route>HOME</a></li>
+          <li><a href="/dashboard" data-route>DASHBOARD</a></li>
+          <li><a href="/about" data-route>ABOUT</a></li>
         </ul>
       </nav>
+      <div class="header-section auth-section">
+        <a href="/auth" id="logoutNav" class="auth-btn authStatus" data-route>LOGIN</a>
+      </div>
     </header>
     <main id="content" tabindex="-1"></main>
     <footer class="site-footer">
