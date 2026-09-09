@@ -1,6 +1,27 @@
-node_modules
+# Sensitive Security Keys (Crucial)
 .env
-npm-debug.log*
-.vercel
+.env.local
 .env.vercel
-.env.example
+.env.*.local
+
+# Dependency Folders (Too large for GitHub)
+node_modules/
+jspm_packages/
+web_modules/
+
+# Vercel and Deployment Build Files
+.vercel
+.next/
+dist/
+build/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Local Logs and Debugging Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
