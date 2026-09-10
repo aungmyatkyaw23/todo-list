@@ -1057,8 +1057,8 @@ main:focus,
   }
 
   /* Optimize Mobile Dashboard */
-  .account-panel,
-  .weather-panel,
+  /* .account-panel,
+  .weather-panel, */
   .focus-panel {
     display: none;
   }
@@ -1145,7 +1145,6 @@ main:focus,
   .composer {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
   
   .composer form-footer {
