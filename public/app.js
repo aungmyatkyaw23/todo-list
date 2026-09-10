@@ -314,10 +314,29 @@ function getCurrentLocation() {
       return;
     }
 
+    if (!window.isSecureContext) {
+      reject(new Error("Location requires HTTPS. Please access the site via HTTPS."));
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => resolve({ latitude: coords.latitude, longitude: coords.longitude }),
-      () => reject(new Error("Allow location access to see local weather.")),
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 10 * 60 * 1000 }
+      (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            reject(new Error("Location permission denied. Please allow location in Settings > Safari > Location."));
+            break;
+          case error.POSITION_UNAVAILABLE:
+            reject(new Error("Location unavailable. Check Settings > Privacy > Location Services is on, and allow this site in Settings > Safari > Location."));
+            break;
+          case error.TIMEOUT:
+            reject(new Error("Location request timed out. Please try again."));
+            break;
+          default:
+            reject(new Error("Unable to get your location."));
+        }
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 10 * 60 * 1000 }
     );
   });
 }
