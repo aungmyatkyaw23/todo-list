@@ -689,6 +689,7 @@ main:focus,
   min-height: 64px;
   background-color: var(--mint);
   border-bottom: var(--border-thin);
+  border-top: var(--border-thin);
 }
 
 .header-section {
@@ -1144,13 +1145,27 @@ main:focus,
   .composer {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   
   .composer form-footer {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 16px;
     align-items: flex-end;
+    overflow: hidden;
+    min-width: 0;
+  }
+  
+  .composer form-footer label {
+    margin-bottom: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+  
+  .composer form-footer input[type="date"] {
+    min-width: 0;
+    width: 100%;
   }
 
   /* Highlight selected navigation item on mobile */
@@ -1166,10 +1181,33 @@ main:focus,
   display: block;
 }
 
+/* Mobile logout button */
+.mobile-logout-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 12px 24px;
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-logout-button:hover {
+  background-color: var(--bg);
+}
+
 @media (max-width: 768px) {
   .filter-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+  }
+  
+  .mobile-logout-button.is-authenticated {
+    display: block;
   }
 }

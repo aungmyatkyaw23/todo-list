@@ -478,9 +478,21 @@ async function loadSession() {
 
 function bindNavigationMenu() {
   const logoutNav = document.querySelector("#logoutNav");
+  const mobileLogoutBtn = document.querySelector("#mobileLogoutBtn");
+  
+  // Update UI based on auth state
   if (state.user) {
     logoutNav.textContent = "Log out";
+    if (mobileLogoutBtn) {
+      mobileLogoutBtn.classList.add("is-authenticated");
+    }
+  } else {
+    logoutNav.textContent = "Login";
+    if (mobileLogoutBtn) {
+      mobileLogoutBtn.classList.remove("is-authenticated");
+    }
   }
+  
   const button = document.querySelector(".hamburger");
   const links = document.querySelector(".nav-links");
   button.addEventListener("click", () => {
@@ -488,6 +500,15 @@ function bindNavigationMenu() {
     button.setAttribute("aria-expanded", String(open));
   });
 
+  // Close mobile menu when any nav link is clicked
+  links.querySelectorAll("a[data-route]").forEach((link) => {
+    link.addEventListener("click", () => {
+      links.classList.remove("active");
+      button.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Handle logout for header logout button
   if (logoutNav) {
     logoutNav.addEventListener("click", async (event) => {
       if (state.user) {
@@ -501,6 +522,28 @@ function bindNavigationMenu() {
         state.user = null;
         state.editingId = null;
         logoutNav.textContent = "Login";
+        if (mobileLogoutBtn) mobileLogoutBtn.classList.remove("is-authenticated");
+        router.navigate("/auth");
+      }
+    });
+  }
+
+  // Handle logout for mobile menu logout button
+  if (mobileLogoutBtn) {
+    mobileLogoutBtn.addEventListener("click", async () => {
+      if (state.user) {
+        const confirmed = await showConfirm("Logout?", "Are you sure you want to log out?", "Log out");
+        if (!confirmed) return;
+        try {
+          await request("/api/auth/logout", { method: "POST" });
+        } catch (_error) {}
+        state.user = null;
+        state.editingId = null;
+        logoutNav.textContent = "Login";
+        mobileLogoutBtn.classList.remove("is-authenticated");
+        // Close mobile menu
+        links.classList.remove("active");
+        button.setAttribute("aria-expanded", "false");
         router.navigate("/auth");
       }
     });
