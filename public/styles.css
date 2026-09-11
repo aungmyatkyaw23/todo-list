@@ -527,6 +527,7 @@ dialog::backdrop {
 }
 
 .dialog-actions button {
+  outline: none;
   min-width: 100px;
 }
 
